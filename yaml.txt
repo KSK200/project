@@ -1,0 +1,749 @@
+********************************************************************
+AUTHOR : SUDHAKAR S                                                *
+DATE : 12/12/2023                                                  *
+LOCATION : GV OFFICE                                               *
+TOPIC : COMPLETE YAML BASICS TO ADVANCE FOR DEVOPS                 *
+********************************************************************
+*******************************YAML COURSE************
+ 
+CONTENTS : 
+1. INTRODUCTION 
+2. SYNTAX
+3. PROPERTIES / DATATYPES 
+YAML TOOLS 
+ 
+FULL FORM : 
+ 
+BEFORE : 
+YET ANOTHER MARKUP LANGUANGE 
+NOW : 
+YAML Ain't Markup Language
+ 
+what is html ? 
+its also a markup lang ..
+hypertext markup language 
+ 
+use of html ? 
+put data on web page , put links , forms , heading on the web page , but we cant use html for styling , we use css , then the actual html usgae is ...
+ 
+html : provides child & parent relationship 
+1st header will come 
+inside that we have list 
+inside list we have bullet points 
+inside bullets we have paragraph 
+ 
+so this relationship what goes inside what & how they are layered this is the use of markup lang ...
+ 
+ 
+Why YAML name chnaged to YAML Ain't Markup Language
+YAML = YAML Ain't Markup Language
+ 
+ 
+Yaml is'nt a programming language , its basically a data format , used to exchnage the data . 
+--> similar to xml , json Datatypes .
+--> its basically a simple human readable language that can be used to represent data . 
+--> used to store info about some configutaryon
+--> IN YAMl we can store only data & not commands 
+ 
+Data Serialisation : 
+--> This is known as Storing of data in like files , in json , xml we store data likely it is known as data serialisation .
+ 
+--------------------------------------------------------
+we know objects is nothing but collection of data . 
+ex  : in memory, we might have stored a object of student which has some sort of datatype , roll , name ,marks etc .
+ 
+The main use of these is to store this data & share it in android app (Example) / web app / ML model etc ..
+ 
+basically we are sharing these student object in mob app -->,--> web app ,---> or Ml model .
+ 
+The basic idea is to share this particular data that we  want to share in just one format which can be shared everywhere . but the data that has to be shared in different formart for app , web app , Ml model .etcc
+ 
+ 
+So the idea is serialisqation & deserialisation 
+------------------------------------------------
+Serialsisation : process of converting the data objects into a complex data structure (into a streamm of bytes)
+ 
+data object converts the data object whicch is present in some complex data structure into a stream of storage 
+which can be transfered to our physical devices .
+ 
+Serialization:
++----------+       +-----------------+      +------------+
+|  Object  | --->--| Stream (Chunks) | --->-| Computer   |
++----------+       +-----------------+      | (Database) |
+                                            +------------+
+ 
+Deserialization:
++------------+       +-----------------+       +----------+
+| Computer   | --->--| Stream (Chunks) | --->--|  Object  |
+| (Database) |       +-----------------+       +----------+
++------------+
+ 
+ 
+ Serialization Example:
+ 
+import json
+ 
+# Sample Python object
+python_object = {
+    "name": "John Doe",
+    "age": 30,
+    "city": "Exampleville"
+}
+ 
+# Serialization: Python object to JSON string
+json_string = json.dumps(python_object)
+ 
+Deserialization Example:
+ 
+# Deserialization: JSON string to Python object
+decoded_object = json.loads(json_string)
+ 
+# Accessing values in the deserialized object
+name = decoded_object["name"]
+age = decoded_object["age"]
+city = decoded_object["city"]
+ 
+print(f"Name: {name}, Age: {age}, City: {city}")
+ 
+-------------------------------------------------------------------------------------------------------------
+ 
+Serialization:
++----------+             +--------------------+             +-----------------+
+|  Object  |  --->       |  Serialization     |  --->       | Stream of Bytes |
++----------+             |    (Serializer)    |             |                 |
+                         +--------------------+             +-----------------+
+                                                                     |
+                                                                     v
+Storage Options:                           +------------------+  +-------------+
+                           YAML File  ---> | YAML File        |  | Database    |
+                                           |                  |  |             |
+                            Database  ---> |                  |  +-------------+
+                                           +------------------+
+                            Memory    ---> | Memory           |
+                                           |                  |
+                                           +------------------+
+ 
+ 
+the above diagram illustrates Serialization Phase:
+ 
+1.Object: This represents the original object that you want to serialize.
+2.Serialization (Serializer): The object goes through a serialization process, handled by a serializer. This process converts the object into a stream of bytes, making it suitable for storage or transmission.
+3.Stream of Bytes: This represents the serialized form of the object. It's a binary representation that can be stored or transmitted efficiently.
+ 
+Storage Options:
+ 
+1.YAML File: The serialized data can be stored in a YAML file. YAML is a human-readable data serialization format.
+2.Database: The serialized data can be stored in a database. Databases are used for structured and efficient data storage.
+3.Memory: The serialized data can be stored in memory. This could be useful for short-term storage or caching within the application.
+ 
+ 
+Recap : 1.obejct is combination of Code + Data in various devices in our memory (RAM / ROM ETC..)
+object is basically a data storage unit .
+ 
+when we work with big data , ml etc serialisation comes into picture .
+ 
+if i need to represent the object into a file where i can modify, these file are known as data serialiasation files & the language used in these files are known as data serilaisation language .
+ 
+language that can be sued to  serilisation of data in text format such as YAML , XML JSON .
+ 
+1. store data in format of code 
+2. use file to convert to object 
+ 
+obejct ----> file ----> serilisation 
+file ------> object ---> deserialisation
+ 
+ 
+-----------------------------------
+why Yet an't another markup lang .
+because markup are used to store documents . 
+ex : Html is used to store doc...
+ 
+In Yaml we can also store documents + obejct's data too so its known as Yet an't another markup lang .
+----------------------------------=---------------
+ 
+data seerialisation & deserialisation : 
+Recap : 
+we have an object in some computer & we want to transfer it into another application so format may be different to maintain this format its cool to have 1 format which i can share everywhere , convertt that object into a YAML file (Serialisation) , convert yaml file to object (Deserialisation) , so the representation of object in code like java file we can see it in YAML file .
+ 
+ 
+What kind of Files / objects are stored in YAML files :
+ 
+1. used in configuration files 
+example : k8s , docker , logs , caches ,config files or any other tools . 
+ 
+i made my app.. & i want to run my application on 10 servers in cloud & they should run in such a way at most 5 applications are running per server etc like that .
+so in k8s we have  a object like pod , so k8s have the object & its Writtentype how the objecet look like please take it & craete the object so the written type we will provide it in YAML file.
+ 
+for java , pyhton we have clients (Advanced topics)
+ 
+Benifits of YAML:
+1. easy to read (Human Readable)
+2. Simple & easy to read
+3. has strict syntax
+4. indentition is imp (python)
+5. eaasily convertable to json , Xml .
+6. most programing language use Yaml 
+7. more powerful when representing complex data
+8. we can also use various tools with it , Parsers etc.
+ 
+Lens IDE - to work with k8s  (No need to write code)
+Kx Lens IDE - GUI where we can just click & does all things automatically for you.
+ 
+9. parsing is easy (Reading the data)
+ 
+-----------------------
+YAML handsON:
+In Yaml we store 
+1. key : value pairs just like dictonaries & hashmaps 
+ 
+       key : value 
+ ex : "apple" : "i am a red fruit"
+ 
+ 
+key -------------------> Value 
+ 
+key pointing  to some Value .
+ 
+its not stored in hashmap or anything here its just a textual representation .
+ 
+we can use the YAMl file & 
+1. convert into hashmap out of it . & here are the key & values
+ 
+2. convert into Json object & can be passed into web dev project etc..
+ 
+ 
+ 2. lists 
+# lists
+- apple 
+-mango
+-banana
+ 
+YAML is case sensitive .
+ 
+3. block style
+ 
+cities:
+- new delhi
+- mumbai 
+- gujrat 
+ 
+ 
+https://www.yamllint.com/ - is a parser webiste to check the error or indentation 
+ 
+ 
+ 
+wkt , all above 3 are different types of document , how to tell yaml , that we are creating different types of objects . 
+using --- after a end of 1 document
+ 
+YAML is a collection of 0 or more documents 
+ 
+ 
+To end the documents  by mentioning ...
+ 
+----------------------Json Files -----------------------
+ 
+use some tools to convert from YAML to json 
+ 
+https://onlineyamltools.com/convert-yaml-to-json
+ 
+ 
+Yaml has no multiline comments 
+YAMLlint - The YAML Validator
+Validate, Verify and Reformat your YAML documents, optimized for Ruby on Rails
+
+
+-----------------------------Datatypes ---------
+anything that we write after a : is known as variable 
+ex : name: sudhakar # THIS ALSO WORKS
+fruit: "ornage"     # STRING
+job: 'ASE- TARINEE'   # STRING
+
+
+# THIS WONT WORKK 
+bio: hey this is sudd  # both are different entries
+hii  hello namasthe !! # this gives error 
+
+YAML file should have something like key: value in each line 
+
+
+# To write a single line in multiple lines (USE |)
+bio: | 
+hey this is sudhakar 
+im using 2 lines 
+
+                         ( or) (USE >)
+
+message: >
+this is same as pipe we used 
+above it will be treated as a single sine 
+
+same as :
+
+message: > 
+this is same as pipe we used above it will be treated as a single line
+
+Note : YAML auto detect the datatypes like python 
+number: 54321 # integer ype
+marks:56.765 # float 
+booleanvalue: No # also n , N , false , False , FALSE 
+# same for true --> yes  , Y , y
+
+# specify the type of Datatypes
+
+syntax : key: !!<Datatype> value
+zero: !!int 0
+positiveNum: !!INT 45
+INTnegativeNUM: !!int -45
+binrayNum: !!int 0n11001
+ctalNum: !!int 06543
+hexa: !!int 0x45
+commaValue: !!int +543_400 #543,400
+
+# FLOATING POINT NUMBERS
+MARKS: !!FLOAT 56.89
+inifnity: !!float .inf
+notAnumber: .nan
+
+# boolean datatypes 
+booleanData: !!bool no
+
+
+# null datatype 
+surname: !!null Null # null NULL ~ ilde is also null
+~: this is a null key
+
+# date & time Datatypes
+
+# Date only
+date: 2023-12-12
+
+# Date and time
+datetime: 2023-12-12T14:30:00Z
+
+------------------String-----------------------------
+
+# Using the !!str tag to indicate a string
+date_str: !!str 2023-12-12
+
+# Using the !!timestamp tag to indicate a timestamp
+datetime_timestamp: !!timestamp '2023-12-12T14:30:00Z'
+
+# Date and time in Indian Standard Time (IST)
+datetime_in_india: 2023-12-12T20:00:00+05:30
+
+
+# Date and time without a specific time zone
+datetime_without_timezone: 2023-12-12T14:30:00
+
+
+*************Exponnetial Numbers************
+# Exponential numbers
+large_number: 6.022e23  # 6.022 x 10^23
+small_number: 1.5e-5   # 1.5 x 10^-5
+
+
+************Advanced Datatypes ************
+
+# 1.lists , !!seq indicates sequence data types
+- student: !!seq
+- marks
+- age
+- roll_no 
+
+# we can write like this also for sequence data
+cities: [bengaluru, mangaluru]
+
+# some of the keys of seq will be empty too.
+#sparse seq 
+sparse seq:
+- hey
+- how
+-
+- Null
+
+
+                     or 
+
+
+sparse_sequence:
+  - 1
+  - null
+  - 3
+  - null
+  - 5
+
+
+************Nested sequences**********
+
+nested_sequences:
+  - - 1
+    - 2
+    - 3
+  - - 4
+    - 5
+    - 6
+  - - 7
+    - 8
+    - 9
+
+ ---------- or ----------
+ 
+
+nested_sequences:
+  - 1
+    - 2
+    - 3
+  - 4
+    - 5
+    - 6
+  - 7
+    - 8
+    - 9
+
+ 
+# key value pairs are called maps
+!!map 
+
+
+# Nested mapping : a map within a map !
+ 
+nested_mapping:
+  key1: value1
+  key2:
+    subkey1: subvalue1
+    subkey2: subvalue2
+  key3: value3
+
+name: Sudhakar
+role:
+ age:22
+ job:Ase-trainee
+
+# same as 
+name: Sudhakar
+role: {age: 78, job: Ase-trainee}
+
+
+************Pairs************
+
+# Pair: key may have duplictae values
+# !!pairs
+
+
+syntax : pair example: !!pairs
+- job: student
+- job: teacher
+
+# this is same as array of hashtables 
+
+same as : 
+
+pair example: !!pairs [job: student, job: teacher]
+
+# !!set - allows you to have unique values 
+
+favorite_colors: !!set
+  - red
+  - green
+  - blue
+  - red  # Duplicate value, will be treated as a single occurrence in the set
+   
+                              (  or )
+
+names: !!set
+? kunal
+? rotit
+? rahul
+? sudhakar
+
+*************DICTORNARY*********
+# !!omap 
+When we need a the entire sequence as a value , we can use dictonary!
+
+syntax : 
+example_omap: !!omap
+  - key1: value1
+  - key2: value2
+  - key3: value3
+
+example : 
+
+ people: !!omap
+  - sudd:
+    name:sudhhakar
+    age:54
+    height:564
+  - rotit:
+     name:rohit
+     age:25
+     height:989
+
+************Resuing some properties**********
+
+likings_of_Person:
+ fav fruit: mango
+ dislikes: grapes
+
+person: 
+ name: kunal kkush
+ 
+
+suppose if 5,  people have same likings w need to copy paste  the liking & dislikes of a person .
+
+for that we use anchors  : 
+
+
+# Using anchors
+- &dog
+  name: Fido
+  breed: Labrador
+
+- &cat
+  name: Whiskers
+  breed: Siamese
+
+# Referencing anchors
+pets:
+  - *dog   # refers to the anchor with the key 'dog'
+  - *cat   # refers to the anchor with the key 'cat'
+
+Example 1: Using Different Characters for Anchors
+
+# Using different characters for anchors
+- !&dog
+  name: Fido
+  breed: Labrador
+
+- !&cat
+  name: Whiskers
+  breed: Siamese
+
+# Referencing anchors
+pets:
+  - !*dog  # refers to the anchor with the key 'dog'
+  - !*cat  # refers to the anchor with the key 'cat'
+
+Example 2: Nested Anchors
+
+# Nested anchors
+- &person
+  name: John
+  age: 30
+  address:
+    city: New York
+    state: NY
+
+# Referencing the anchor
+employee: *person
+
+
+Example 3: List of Anchors
+
+# List of anchors
+- &item1 apple
+- &item2 banana
+- &item3 orange
+
+# Referencing anchors in a sequence
+fruits:
+  - *item1
+  - *item2
+  - *item3
+
+Example 4: Anchors in Mapping
+
+# Anchors in mapping
+book: &book
+  title: "The Hitchhiker's Guide to the Galaxy"
+  author: Douglas Adams
+
+# Referencing the anchor within another mapping
+library:
+  - shelf:
+      section: Sci-Fi
+      books:
+        - *book
+  - shelf:
+      section: Comedy
+      books:
+        - *book
+
+
+****************another way ************
+# Define anchors
+&common_properties
+  color: red
+  size: medium
+
+&specific_properties
+  weight: 10kg
+  price: $20
+
+# Create a new mapping by merging properties from anchors
+combined_properties: &merged_properties
+  <<: *common_properties
+  size:large
+  <<: *specific_properties
+   price: $30
+
+we can overide the values of a  some things that we want to chnage & rest of the things will be same 
+-------------------------------------------------------------------
+
+* - is for reference of an operator 
+<< - merge key is used to merge the keys & valus from one or more specified anchor into a new mapping 
+& - character is used to denote an anchor
+
+-------------------------------------------------------------------
+
+real world example : 
+
+In "ABC School," led by Principal Dr. Smith, student data is organized. John Doe, with roll number 101, scored 85 marks; Jane Smith, roll number 102, scored 92 marks, and Bob Johnson, roll number 103, scored 78 marks. This hierarchical structure captures school details, principal information, and individual student records in a clear format.
+
+
++---------------------+
+|        school       |
+|---------------------|
+|      name:          |
+|       "ABC School"  |
+|      principal:     |
+|       "Dr. Smith"   |
+|      students:      |
+|       +-------------+
+|       |   -           |
+|       |    roll_no:   |
+|       |     101       |
+|       |    name:      |
+|       |     "John Doe"|
+|       |    marks:     |
+|       |     85        |
+|       +-------------+
+|       +-------------+
+|       |   -           |
+|       |    roll_no:   |
+|       |     102       |
+|       |    name:      |
+|       |     "Jane     |
+|       |     Smith"    |
+|       |    marks:     |
+|       |     92        |
+|       +-------------+
+|       +-------------+
+|       |   -           |
+|       |    roll_no:   |
+|       |     103       |
+|       |    name:      |
+|       |     "Bob      |
+|       |     Johnson"  |
+|       |    marks:     |
+|       |     78        |
+|       +-------------+
++---------------------+
+
+
+                                                     or
+school
+├── name: "ABC School"
+├── principal: "Dr. Smith"
+├── students:
+│   ├── - 
+│   │   ├── roll_no: 101
+│   │   ├── name: "John Doe"
+│   │   └── marks: 85
+│   ├── - 
+│   │   ├── roll_no: 102
+│   │   ├── name: "Jane Smith"
+│   │   └── marks: 92
+│   └── - 
+│       ├── roll_no: 103
+│       ├── name: "Bob Johnson"
+│       └── marks: 78
+└──
+ 
+
+thi is a  data , which need to be saved in a file as a code used in various systems in backend etc..
+
+---------------------------------------
+XML : not able to read by humans 
+---------------------------------------
+<school>
+  <name>ABC School</name>
+  <principal>Dr. Smith</principal>
+  <students>
+    <student>
+      <roll_no>101</roll_no>
+      <name>John Doe</name>
+      <marks>85</marks>
+    </student>
+    <student>
+      <roll_no>102</roll_no>
+      <name>Jane Smith</name>
+      <marks>92</marks>
+    </student>
+    <student>
+      <roll_no>103</roll_no>
+      <name>Bob Johnson</name>
+      <marks>78</marks>
+    </student>
+  </students>
+</school>
+
+------------------------------------------------json
+------------------------------------------------
+{
+  "school": {
+    "name": "ABC School",
+    "principal": "Dr. Smith",
+    "students": [
+      { "roll_no": 101, "name": "John Doe", "marks": 85 },
+      { "roll_no": 102, "name": "Jane Smith", "marks": 92 },
+      { "roll_no": 103, "name": "Bob Johnson", "marks": 78 }
+    ]
+  }
+}
+------------------------------------------------YAML :
+------------------------------------------------
+school:
+  name: "ABC School"
+  principal: "Dr. Smith"
+  students:
+    - roll_no: 101
+      name: "John Doe"
+      marks: 85
+    - roll_no: 102
+      name: "Jane Smith"
+      marks: 92
+    - roll_no: 103
+      name: "Bob Johnson"
+      marks: 78
+------------------------------------------------
+
+
+yaml is the cleanest among all & easy human readable  , In k8s we use yaml 
+
+devops tools : YAMl TOOOLS 
+
+HOW TO VA;IDATE YOUR YAML FILES : 
+https://medium.com/m/global-identity-2?redirectUrl=https%3A%2F%2Fitnext.io%2Fhow-to-validate-kubernetes-yaml-files-9a17b9a30f08
+
+tools 
+1. Datree - 
+-------------------------------------------
+link : https://www.datree.io/?utm_source=youtube&utm_medium=influencer&utm_campaign=kunal
+--------------------------------------------
+functions : 
+validate k8s like config files
+validate a YAML file  
+---------------------------------------------
+also check videos from kunal for tuturials
+
+2. monakle by kubeshop 
+when we work with k8s big & complex yaml files
+we will have many yaml files , its makes us easy to work with yaml manifest files , it structres  & helps managing 
+
+link : https://kubeshop.io/
+https://github.com/kubeshop/monokle?utm_medium=partner&utm_source=commclassroom&utm_campaign=kunal
+
+3. lens - in k8s we create new pods , objects , cluster etc , we need to write big big YAML files & depoy them .. it does all these things for us using an application that too GUI.  
+
+link : https://k8slens.dev/?utm_source=CloudNativeHackathon&utm_medium=Youtube&utm_campaign=DevOpsBoot
+
